@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Backend Developer | Vivek Nikam</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e67e22;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --java-color: #f89820;
+            --spring-color: #6db33f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Header / Hero Section */
+        header {
+            height: 60vh;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a252f 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--secondary-color);
+            margin-bottom: 20px;
+            overflow: hidden; /* IMPORTANT */
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* keeps image properly cropped */
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #bdc3c7;
+        }
+
+        /* Sections */
+        section {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        h2 {
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 15px;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .java-icon { color: var(--java-color); }
+        .spring-icon { color: var(--spring-color); }
+
+        /* Experience & Education */
+        .timeline-item {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .timeline-item h3 {
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+
+        .timeline-item .company {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .timeline-item .date {
+            font-style: italic;
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+
+        .timeline-item ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-tags {
+            margin-top: 15px;
+        }
+
+        .tag {
+            background: #eee;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            color: #555;
+        }
+
+        /* Contact Footer */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo"><strong>Vivek Nikam</strong></div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <div class="profile-img">
+        <img src="https://raw.githubusercontent.com/viveknikam339/viveknikam/b0e79c1efa49f3a1c846f9d0bf29a2fa0b9e958d/profile.png" alt="Vivek">
+        </div>
+        <h1>Vivek Nikam</h1>
+        <p>Senior Java Backend Developer | Spring Boot | Microservices Enthusiast</p>
+    </header>
+
+    <section id="about" class="reveal">
+        <h2>Professional Summary</h2>
+        <p>
+            Backend Developer with 5+ years of experience delivering scalable, enterprise-grade applications that drive business efficiency and performance. Proven track record of designing and implementing robust microservices architectures using Java and Spring Boot, resulting in improved system reliability, reduced latency, and enhanced scalability. Adept at writing clean, maintainable code and optimizing system performance to solve complex architectural challenges and create measurable business value.
+        </p>
+    </section>
+
+    <section id="skills" class="reveal">
+        <h2>Technical Arsenal</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <span style="font-size: 2.5rem;">☕</span>
+                <h3>Java</h3>
+                <p>SE 8/17</p>
+            </div>
+            <div class="skill-card">
+                <span style="font-size: 2.5rem; color: #6db33f;">🍃</span>
+                <h3>Spring Boot</h3>
+                <p>Security, Data, caching</p>
+            </div>
+            <div class="skill-card">
+                <span style="font-size: 2.5rem; color: #3498db;">☁️</span>
+                <h3>Microservices</h3>
+                <p>Spring Cloud, Netflix OSS</p>
+            </div>
+            <div class="skill-card">
+                <span style="font-size: 2.5rem; color: #336791;">🐘</span>
+                <h3>Data Base</h3>
+                <p>Oracle, MySql, Spanner, Firestore</p>
+            </div>
+            <div class="skill-card">
+                <span style="font-size: 2.5rem;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Apache_Kafka_logo.svg" 
+                    alt="Kafka" 
+                    style="width: 40px; vertical-align: middle;">
+                </span>
+                <h3>Messaging</h3>
+                <p>Kafka, GCP Pub/Sub</p>
+            </div>
+            <div class="skill-card">
+                <span style="font-size: 2.5rem; color: #2496ed;">🐳</span>
+                <h3>Docker</h3>
+                <p>Containerization</p>
+            </div>
+            <div class="skill-card">
+                <span style="font-size: 2.5rem; color: #ff9900;">📦</span>
+                <h3>AWS</h3>
+                <p>EC2, S3, RDS, Lambda</p>
+            </div>
+            <div class="skill-card">
+                <span style="font-size: 2.5rem;">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                         alt="GitHub"
+                         style="width: 40px; vertical-align: middle;">
+                </span>
+                <h3>Tools</h3>
+                <p>GitHub, Jira, OpenAPI</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="reveal">
+        <h2>Experience</h2>
+        
+        <div class="timeline-item">
+            <div class="company">Accenture Solutions Pvt. Ltd.</div>
+            <h3>Senior Software Analyst</h3>
+            <div class="date">July 2024 - Present</div>
+            <ul>
+                <li>Led the migration of a Google legacy monolithic Broadband service application to a Spring Boot-based microservices architecture, improving system scalability by 40%.</li>
+                <li>Implemented event-driven communication using Pub/Sub and Apache Kafka to synchronize data across 12 distributed services.</li>
+                <li>Optimized database performance by redesigning SQL queries and implementing Redis caching, reducing API latency by 60%.</li>
+                <li>Mentored junior developers and spearheaded the adoption of TDD (Test Driven Development).</li>
+            </ul>
+        </div>
+
+        <div class="timeline-item">
+            <div class="company">Velocis Systems Pvt. Ltd.</div>
+            <h3>Software Developer</h3>
+            <div class="date">April 2021 - June 2024</div>
+            <ul>
+                <li>Developed RESTful APIs for a high-traffic banking platform handling over 50k requests per minute.</li>
+                <li>Integrated payment service with RBI ensuring Payment and Settlement System(PSS) compliance.</li>
+                <li>Automated CI/CD pipelines using kubernetes, reducing deployment time from 2 hours to 15 minutes.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projects" class="reveal">
+        <h2>Key Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Google Fiber</h3>
+                    <p>Google Fiber Inc., also known as GFiber, is a fiber broadband Internet service operated by Alphabet Inc. servicing a growing number of households in cities in 19 states across the United States.</p>
+                    <div class="project-tags">
+                        <span class="tag">Java 17</span>
+                        <span class="tag">Spring Boot</span>
+                        <span class="tag">Kafka & Pub/Sub</span>
+                        <span class="tag">GCP</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>NH Bank Banking Application</h3>
+                    <p>Built secure and high-performance banking modules including payments, AML, GST, and CKYC integration.</p>
+                    <div class="project-tags">
+                        <span class="tag">Java 8</span>
+                        <span class="tag">Spring Boot</span>
+                        <span class="tag">Kafka</span>
+                        <span class="tag">AWS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="reveal">
+        <h2>Education</h2>
+        <div class="timeline-item">
+            <div class="company">Dr. A.P.J. Abdul Kalam Technical University</div>
+            <h3>B.Tech. Computer Science</h3>
+            <div class="date">2016 - 2021</div>
+            <p>Graduated with Honors. Focus on Distributed Systems and Algorithm Analysis.</p>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2>Get In Touch</h2>
+        <p>Always open to discussing application architecture or interesting opportunities.</p>
+        <p>Email: viveknikam339@gmail.com</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/vivek-nikam-31ba65121/">LinkedIn</a>
+        </div>
+        <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.6;">Always ready to contribute.</p>
+    </footer>
+
+    <script>
+        // Reveal elements on scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+
+        // Initial check
+        reveal();
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
